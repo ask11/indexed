@@ -15,13 +15,21 @@
     "marcuswestin/store.js": "*",
     "component/clone": "*",
     "component/type": "*",
-    "component/each": "*"
+    "component/each": "*",
+    "avetisk/defaults": "*",
+    "component/inherit": "*"
   },
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": [
-    "index.js",
+    "lib/index.js",
     "lib/indexeddb.js",
-    "lib/localstorage.js"
+    "lib/localstorage.js",
+    "lib/process.js",
+    "lib/buffer.js",
+    "lib/utils.js",
+    "vendor/abstract-leveldown/abstract-leveldown.js",
+    "vendor/abstract-leveldown/abstract-iterator.js",
+    "vendor/abstract-leveldown/abstract-chained-batch.js"
   ]
 }

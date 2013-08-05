@@ -1,11 +1,13 @@
 ## 0.6.0 / 2013-..-..
 
-  * ~ add batch support
-  * ~ fix all TODO's in localStorage fallback.
-
-### 0.5.2 / 2013-07-..
-
-  * ~ fix weird browsers issues https://ci.testling.com/ask11/indexed
+  * ~ leveldown compatibility
+  * remove keyPath logic
+  * add script/post-install and script/release to simplify package.json
+  * ~ new methods: `open`, `close`, `batch`, `iterator`
+  * ~ brand new test-suite
+  * ~ full rewrite of localStorage fallback - one item per store, use memory, merge with storage
+  * ~ fix weird browsers issues https://ci.testling.com/ask11/indexed, #5
+  * ~ add performance suite
 
 ### 0.5.1 / 2013-07-25
 

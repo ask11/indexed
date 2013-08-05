@@ -2,10 +2,12 @@
   "name": "indexed",
   "version": "0.5.1",
   "description": "High-level wrapper around IndexedDB with fallback to localStorage",
-  "main": "dist/indexed.js",
+  "main": "indexed.js",
   "ignore": [
     "**/.*",
-    "index.js",
+    "lib",
+    "script",
+    "test",
     "component.json",
     "package.json"
   ]
