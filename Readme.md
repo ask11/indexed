@@ -150,7 +150,7 @@ tags.del(3, function(err) {
 
 ## Development
 
-  - `npm install` to install dependencies;
+  - `npm install && component install --dev` to install dependencies;
   - `npm test` to ensure that all tests pass;
   - `npm start` to run test server and watcher.
 

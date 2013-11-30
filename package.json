@@ -15,11 +15,10 @@
     "browserify"
   ],
   "scripts": {
-    "postinstall": "component install",
     "test": "component-test",
     "start": "component-test --server",
     "build": "component build --dev",
-    "release": "component build --standalone Indexed && sed -i.bak 's/require/requireIndexed/g' build/build.js && cp ./build/build.js ./dist/indexed.js",
+    "release": "component build -s Indexed && sed -i.bak 's/require/requireIndexed/g' build/build.js && cp ./build/build.js ./dist/indexed.js",
     "stat": "cloc lib/ --quiet && cloc test/*.js --quiet"
   },
   "devDependencies": {
@@ -31,15 +30,10 @@
     "html": "test/test-runner.html",
     "browsers": [
       "ie/8..latest",
-      "firefox/3..5",
-      "firefox/23..nightly",
-      "chrome/4..7",
+      "firefox/25..nightly",
       "chrome/30..canary",
       "opera/10..latest",
-      "safari/4..latest",
-      "iphone/6",
-      "ipad/6",
-      "android/4.2"
+      "safari/4..latest"
     ]
   }
 }

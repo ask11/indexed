@@ -1,8 +1,9 @@
 describe('Indexed', function() {
-  var expect  = chai.expect;
+  var expect = require('chai').expect;
+  var async = require('async');
   localStorage.clear();
 
-  ['indexeddb', 'localstorage'].forEach(function(adapter) {
+  ['indexed-db', 'local-storage'].forEach(function(adapter) {
     var Indexed = require('indexed/lib/' + adapter);
     if (!Indexed.supported) return;
 

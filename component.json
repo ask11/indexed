@@ -1,8 +1,9 @@
 {
   "name": "indexed",
   "repo": "ask11/indexed",
-  "description": "Modular storage on top of IndexedDB with fallback to localStorage",
   "version": "0.6.0",
+  "description": "Modular storage on top of IndexedDB with fallback to localStorage",
+  "license": "MIT",
   "keywords": [
     "indexed",
     "IndexedDB",
@@ -16,11 +17,14 @@
     "component/type": "*",
     "component/each": "*"
   },
-  "license": "MIT",
-  "main": "index.js",
+  "development": {
+    "chaijs/chai": "*",
+    "caolan/async": "*"
+  },
   "scripts": [
     "lib/index.js",
     "lib/indexed-db.js",
     "lib/local-storage.js"
-  ]
+  ],
+  "main": "lib/index.js"
 }
