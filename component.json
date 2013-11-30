@@ -20,8 +20,8 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": [
-    "index.js",
-    "lib/indexeddb.js",
-    "lib/localstorage.js"
+    "lib/index.js",
+    "lib/indexed-db.js",
+    "lib/local-storage.js"
   ]
 }
