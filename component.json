@@ -12,10 +12,8 @@
   ],
   "dependencies": {
     "timoxley/next-tick": "*",
-    "marcuswestin/store.js": "*",
-    "component/clone": "*",
-    "component/type": "*",
-    "component/each": "*"
+    "gingkoapp/set": "*",
+    "component/type": "*"
   },
   "development": {
     "chaijs/chai": "*",

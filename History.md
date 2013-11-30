@@ -1,8 +1,15 @@
-## 0.6.0 / 2013-..-..
+## 0.6.0 / 2013-12-..
 
-  * ~ add batch support
-  * ~ fix all TODO's in localStorage fallback.
-  * ~ fix weird browsers issues https://ci.testling.com/ask11/indexed
+  * complete rewrite with new modular architecture
+  * introduce plugins with `indexed.use`
+  * use this.backend to provide storage agnostic methods
+  * backend-spec to test backend indexed compatibility
+  * logical convention about types of keys
+  * arguments validation
+  * add `batch`
+  * add filter methods: `query`, `createReadStream`
+  * remove `all`, use `query({}, cb)` instead
+  * use Indexed as a function or constructor
 
 ### 0.5.1 / 2013-07-25
 

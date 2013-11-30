@@ -29,7 +29,7 @@
     "preprocess": "npm run build",
     "html": "test/test-runner.html",
     "browsers": [
-      "ie/8..latest",
+      "ie/9..latest",
       "firefox/25..nightly",
       "chrome/30..canary",
       "opera/10..latest",
