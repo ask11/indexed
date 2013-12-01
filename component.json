@@ -11,8 +11,9 @@
     "LevelDB"
   ],
   "dependencies": {
+    "component/type": "*",
     "timoxley/next-tick": "*",
-    "component/type": "*"
+    "yields/idb-request": "*"
   },
   "development": {
     "chaijs/chai": "*",
