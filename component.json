@@ -24,6 +24,7 @@
   "scripts": [
     "lib/index.js",
     "lib/indexed-db.js",
+    "lib/idb-store.js",
     "lib/local-storage.js"
   ],
   "main": "lib/index.js",
