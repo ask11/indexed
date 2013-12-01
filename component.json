@@ -14,7 +14,8 @@
     "component/type": "*",
     "timoxley/next-tick": "*",
     "yields/idb-request": "*",
-    "paulmillr/async-each": "*"
+    "paulmillr/async-each": "*",
+    "juliangruber/stream": "*"
   },
   "development": {
     "chaijs/chai": "*",
