@@ -33,6 +33,10 @@ function backendSpec(name, backend) {
         });
       });
     });
+
+    after(function(done) {
+      indexed.dropDb('notepad', done);
+    });
   });
 }
 
