@@ -12,7 +12,6 @@
   ],
   "dependencies": {
     "component/type": "*",
-    "component/each": "*",
     "timoxley/next-tick": "*",
     "yields/idb-request": "*",
     "paulmillr/async-each": "*",
@@ -21,14 +20,12 @@
   },
   "development": {
     "chaijs/chai": "*",
-    "enyo/functionbind": "*",
     "caolan/async": "*"
   },
   "scripts": [
     "lib/index.js",
-    "lib/indexed-db.js",
-    "lib/idb.js",
-    "lib/local-storage.js"
+    "lib/indexeddb.js",
+    "lib/localstorage.js"
   ],
   "main": "lib/index.js",
   "remotes": []
