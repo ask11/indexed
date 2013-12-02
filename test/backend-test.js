@@ -1,19 +1,21 @@
 function backendSpec(name, backend) {
   var indexed = require('indexed');
   var expect = require('chai').expect;
-  var async = require('async');
   var notes;
 
   describe('Backend: '+ name, function() {
     indexed.use(backend);
+    before(function(done) {
+      indexed.dropDb('notepad', done);
+    });
 
     describe('get', function() {
       beforeEach(function(done) {
         notes = indexed('notepad:notes');
-        async.parallel([
-          function(cb) { notes.put('1', { name: 'note 1' }, cb); },
-          function(cb) { notes.put('2', { name: 'note 2' }, cb); },
-          function(cb) { notes.put('3', { name: 'note 3' }, cb); }
+        notes.batch([
+          { type: 'put', key: '1', value: { name: 'note 1' } },
+          { type: 'put', key: '2', value: { name: 'note 2' } },
+          { type: 'put', key: '3', value: { name: 'note 3' } },
         ], done);
       });
       afterEach(function(done) { notes.clear(done) });
@@ -33,12 +35,8 @@ function backendSpec(name, backend) {
         });
       });
     });
-
-    after(function(done) {
-      indexed.dropDb('notepad', done);
-    });
   });
 }
 
-backendSpec('IndexedDB', require('indexed/lib/indexed-db'));
-// backendSpec('localStorage', require('indexed/lib/local-storage'));
+// backendSpec('IndexedDB', require('indexed/lib/indexed-db'));
+backendSpec('localStorage', require('indexed/lib/local-storage'));

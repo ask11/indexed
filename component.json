@@ -12,14 +12,14 @@
   ],
   "dependencies": {
     "component/type": "*",
+    "component/each": "*",
     "timoxley/next-tick": "*",
     "yields/idb-request": "*",
     "paulmillr/async-each": "*",
     "juliangruber/stream": "*"
   },
   "development": {
-    "chaijs/chai": "*",
-    "caolan/async": "*"
+    "chaijs/chai": "*"
   },
   "scripts": [
     "lib/index.js",
