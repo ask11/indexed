@@ -21,7 +21,8 @@
   },
   "development": {
     "chaijs/chai": "*",
-    "enyo/functionbind": "*"
+    "enyo/functionbind": "*",
+    "caolan/async": "*"
   },
   "scripts": [
     "lib/index.js",
