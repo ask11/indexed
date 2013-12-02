@@ -1,11 +1,11 @@
 function backendSpec(name, backend) {
-  var indexed = require('indexed').use(backend);
+  var indexed = require('indexed');
   var expect = require('chai').expect;
   var async = require('async');
 
   describe('Backend: '+ name, function() {
-    before(function(done) {
-      indexed.dropDb('notepad', done);
+    before(function() {
+      indexed.use(backend);
     });
 
     describe('get', function() {
@@ -23,7 +23,7 @@ function backendSpec(name, backend) {
       });
 
       afterEach(function(done) {
-        notes.clear(done);
+        indexed.dropDb('notepad', done);
       });
 
       it('returns one value', function(done) {
@@ -65,12 +65,10 @@ function backendSpec(name, backend) {
             function(cb) { tags.get('1', cb) },
             function(cb) { notes.get('baz', cb) },
           ], function(err2, result) {
-            if (err || err2) return done(err || err2);
-
             expect(result[0]).eql({ name: 'note 1' });
             expect(result[1]).eql({ name: 'tag 1' });
             expect(result[2]).null;
-            tags.clear(done);
+            done(err || err2);
           });
         });
       });
@@ -146,6 +144,57 @@ function backendSpec(name, backend) {
         ], function(err) {
           notebooks.query({}, function(err2, values) {
             expect(values).length(2);
+            done(err || err2);
+          });
+        });
+      });
+    });
+
+    describe('del', function() {
+      var scripts;
+
+      beforeEach(function(done) {
+        scripts = indexed('writer:scripts');
+        scripts.batch([
+          { type: 'put', key: 'iusyn9ds2', value: { name: 'note 1' } },
+          { type: 'put', key: 'io89UYbxq', value: { name: 'note 2' } },
+          { type: 'put', key: 'op8Uj7hx0', value: { name: 'note 3' } },
+        ], done);
+      });
+
+      afterEach(function(done) {
+        indexed.dropDb('writer', done);
+      });
+
+      it('removes one value', function(done) {
+        async.series([
+          function(cb) { scripts.get('io89UYbxq', cb) },
+          function(cb) { scripts.del('io89UYbxq', cb) },
+          function(cb) { scripts.get('io89UYbxq', cb) },
+        ], function(err, result) {
+          expect(result[0]).eql({ name: 'note 2' });
+          expect(result[2]).undefined;
+          done(err);
+        });
+      });
+
+      it.skip('allows parallel remove', function(done) {
+        async.parallel([
+          function(cb) { scripts.del('iusyn9ds2', cb) },
+          function(cb) { scripts.del('io89UYbxq', cb) },
+          function(cb) { scripts.del('op8Uj7hx0', cb) },
+        ], function(err) {
+          scripts.query({}, function(err2, values) {
+            expect(values).length(0);
+            done(err || err2);
+          });
+        });
+      });
+
+      it.skip('does nothing when value is not found', function(done) {
+        scripts.del('fake-key', function(err) {
+          scripts.query({}, function(err2, values) {
+            expect(values).length(3);
             done(err || err2);
           });
         });
