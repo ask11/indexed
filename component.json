@@ -16,7 +16,8 @@
     "timoxley/next-tick": "*",
     "yields/idb-request": "*",
     "paulmillr/async-each": "*",
-    "juliangruber/stream": "*"
+    "juliangruber/stream": "*",
+    "yields/unserialize": "*"
   },
   "development": {
     "chaijs/chai": "*"
