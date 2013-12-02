@@ -4,7 +4,10 @@ function backendSpec(name, backend) {
   var async = require('async');
 
   describe('Backend: '+ name, function() {
+    if (!backend.supported) return;
+
     before(function() {
+      expect(backend.supported).exist;
       indexed.use(backend);
     });
 
