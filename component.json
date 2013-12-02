@@ -20,7 +20,8 @@
     "yields/unserialize": "*"
   },
   "development": {
-    "chaijs/chai": "*"
+    "chaijs/chai": "*",
+    "enyo/functionbind": "*"
   },
   "scripts": [
     "lib/index.js",
