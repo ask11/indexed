@@ -11,11 +11,6 @@ function backendSpec(name, backend) {
       indexed.use(backend);
     });
 
-    describe('.dropDb', function() {
-      it('drop only one db');
-      it('allows parallel dropping');
-    });
-
     describe('get', function() {
       var notes;
 
@@ -210,7 +205,51 @@ function backendSpec(name, backend) {
     });
 
     describe('clear', function() {
+      afterEach(function(done) {
+        async.parallel([
+          function(cb) { indexed.dropDb('writer', cb) },
+          function(cb) { indexed.dropDb('notepad', cb) },
+          function(cb) { indexed.dropDb('dreamy', cb) },
+        ], done);
+      });
 
+      it('clears only one collection', function(done) {
+        var notes = indexed('notepad:notes');
+        var scripts = indexed('writer:scripts');
+
+        async.series([
+          function(cb) { notes.batch([
+            { type: 'put', key: '1', value: { name: 'note 1' } },
+            { type: 'put', key: '2', value: { name: 'note 2' } },
+          ], cb) },
+          function(cb) { scripts.put('foo', 'bar', cb) },
+          function(cb) { scripts.clear(cb) },
+          function(cb) { notes.count(cb) },
+          function(cb) { scripts.count(cb) },
+        ], function(err, result) {
+          expect(result[3]).equal(2);
+          expect(result[4]).equal(0);
+          done(err);
+        });
+      });
+
+      it('allows parallel dropping', function(done) {
+        var notes = indexed('notepad:notes');
+        var dreams = indexed('dreamy:dreams');
+        var scripts = indexed('writer:scripts');
+
+        async.series([
+          function(cb) { notes.put('1', 'foo', cb) },
+          function(cb) { dreams.put('2', 'bar', cb) },
+          function(cb) { scripts.put('3', 'baz', cb) },
+        ], function() {
+          async.parallel([
+            function(cb) { notes.clear(cb) },
+            function(cb) { dreams.clear(cb) },
+            function(cb) { scripts.clear(cb) },
+          ], done);
+        });
+      });
     });
 
     describe('batch', function() {
