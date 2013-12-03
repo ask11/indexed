@@ -253,7 +253,63 @@ function backendSpec(name, backend) {
     });
 
     describe('batch', function() {
+      afterEach(function(done) {
+        indexed.dropDb('notepad', done);
+      });
 
+      it('adds and remove data', function(done) {
+        var notes = indexed('notepad:notes');
+
+        async.series([
+          function(cb) { notes.batch([
+            { type: 'put', key: '1', value: { name: 'note 1' } },
+            { type: 'put', key: '2', value: { name: 'note 2' } },
+            { type: 'put', key: '3', value: { name: 'note 3' } },
+          ], cb) },
+          function(cb) { notes.count(cb) },
+          function(cb) { notes.batch([
+            { type: 'del', key: '1' },
+            { type: 'del', key: '2' },
+            { type: 'put', key: '4', value: { name: 'note 4' } },
+          ], cb) },
+          function(cb) { notes.count(cb) },
+        ], function(err, result) {
+          expect(result[1]).equal(3);
+          expect(result[3]).equal(2);
+          done(err);
+        });
+      });
+
+      it('works in parallel', function(done) {
+        var notebooks = indexed('notepad:notebooks');
+        var tags = indexed('notepad:tags');
+
+        async.parallel([
+          function(cb) { tags.batch([
+            { type: 'del', key: '0' },
+            { type: 'put', key: '1', value: 'tag 1' },
+            { type: 'put', key: '2', value: 'tag 2' },
+            { type: 'put', key: '3', value: 'tag 3' },
+          ], cb) },
+          function(cb) { notebooks.batch([
+            { type: 'del', key: '1' },
+            { type: 'put', key: '1', value: 'notebook 1' },
+          ], cb) },
+          function(cb) { notebooks.batch([
+            { type: 'put', key: '2', value: 'notebook 2' },
+            { type: 'put', key: '3', value: 'notebook 3' },
+            { type: 'put', key: '4', value: 'notebook 4' },
+          ], cb) },
+        ], function(err) {
+          tags.count(function(err2, count) {
+            expect(count).equal(3);
+            notebooks.count(function(err3, count) {
+              expect(count).equal(4);
+              done(err || err2 || err3);
+            });
+          });
+        });
+      });
     });
 
     describe('createReadStream', function() {

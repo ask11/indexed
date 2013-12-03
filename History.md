@@ -5,10 +5,9 @@
   * use this.backend to provide storage agnostic methods
   * backend-spec to test backend indexed compatibility
   * logical convention about types of keys
+  * all keys are sorted in lexicographical order
   * arguments validation
-  * add `batch`
-  * add filter methods: `query`, `createReadStream`
-  * remove `all`, use `query({}, cb)` instead
+  * add `batch`, `createReadStream`, `has`, `count`, `forEach`
   * use Indexed as a function or constructor
 
 ### 0.5.1 / 2013-07-25
