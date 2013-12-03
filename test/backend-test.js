@@ -313,7 +313,63 @@ function backendSpec(name, backend) {
     });
 
     describe('createReadStream', function() {
+      var notes, stream, keys;
 
+      beforeEach(function(done) {
+        keys = [];
+        notes = indexed('notepad:notes');
+        notes.batch([
+          { type: 'put', key: 'fly', value: { name: 'note 1' } },
+          { type: 'put', key: 'zero', value: { name: 'note 2' } },
+          { type: 'put', key: 'foo', value: 123 },
+          { type: 'put', key: 'bar', value: [1, 2, 3, 4] },
+          { type: 'put', key: 'baz', value: null },
+        ], done);
+      });
+
+      afterEach(function(done) {
+        indexed.dropDb('notepad', done);
+      });
+
+      it('sorts keys in lexicographical order', function(done) {
+        stream = notes.createReadStream();
+        stream.on('error', done);
+        stream.on('data', function(value) { keys.push(value.key) });
+        stream.on('end', function() {
+          expect(keys).eql(['bar', 'baz', 'fly', 'foo', 'zero']);
+          done();
+        });
+      });
+
+      it('accepts `start` option', function(done) {
+        stream = notes.createReadStream({ start: 'f' });
+        stream.on('error', done);
+        stream.on('data', function(value) { keys.push(value.key) });
+        stream.on('end', function() {
+          expect(keys).eql(['fly', 'foo', 'zero']);
+          done();
+        });
+      });
+
+      it('accepts `end` option', function(done) {
+        stream = notes.createReadStream({ end: 'fire' });
+        stream.on('error', done);
+        stream.on('data', function(value) { keys.push(value.key) });
+        stream.on('end', function() {
+          expect(keys).eql(['bar', 'baz']);
+          done();
+        });
+      });
+
+      it('accepts `start` & `end` together', function(done) {
+        stream = notes.createReadStream({ start: 'baz', end: 'zaz' });
+        stream.on('error', done);
+        stream.on('data', function(value) { keys.push(value.key) });
+        stream.on('end', function() {
+          expect(keys).eql(['baz', 'fly', 'foo']);
+          done();
+        });
+      });
     });
   });
 }
