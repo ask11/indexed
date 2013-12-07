@@ -18,7 +18,7 @@
     "test": "component-test",
     "start": "component-test --server",
     "build": "component build --dev",
-    "release": "component build -s Indexed && sed -i.bak 's/require/requireIndexed/g' build/build.js && cp ./build/build.js ./dist/indexed.js",
+    "release": "component build -s Indexed -o dist/ -n indexed",
     "stat": "cloc lib/ --quiet --by-file && cloc test/*.js --quiet --by-file"
   },
   "devDependencies": {
