@@ -16,7 +16,8 @@
     "yields/idb-request": "*",
     "paulmillr/async-each": "*",
     "juliangruber/stream": "*",
-    "yields/unserialize": "*"
+    "yields/unserialize": "*",
+    "ask11/idb": "*"
   },
   "development": {
     "chaijs/chai": "*",
@@ -27,6 +28,5 @@
     "lib/indexeddb.js",
     "lib/localstorage.js"
   ],
-  "main": "lib/index.js",
-  "remotes": []
+  "main": "lib/index.js"
 }
