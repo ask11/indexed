@@ -110,7 +110,7 @@ function backendSpec(name, backend) {
         });
       });
 
-      it('allows parallel writing', function(done) {
+      it.only('allows parallel writing', function(done) {
         var notebooks = indexed('notepad:notebooks');
         var tags = indexed('notepad:tags');
 
@@ -375,4 +375,4 @@ function backendSpec(name, backend) {
 }
 
 backendSpec('localStorage', require('indexed/lib/localstorage'));
-// backendSpec('IndexedDB', require('indexed/lib/indexed-db'));
+backendSpec('IndexedDB', require('indexed/lib/indexeddb'));
