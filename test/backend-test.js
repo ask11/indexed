@@ -110,7 +110,7 @@ function backendSpec(name, backend) {
         });
       });
 
-      it.only('allows parallel writing', function(done) {
+      it('allows parallel writing', function(done) {
         var notebooks = indexed('notepad:notebooks');
         var tags = indexed('notepad:tags');
 
