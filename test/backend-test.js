@@ -9,7 +9,7 @@ function backendSpec(name, backend, beforeHook) {
     before(function() {
       expect(backend.supported).exist;
       indexed.use(backend);
-      beforeHook();
+      if (beforeHook) beforeHook();
     });
 
     describe('get', function() {
@@ -375,13 +375,7 @@ function backendSpec(name, backend, beforeHook) {
   });
 }
 
-backendSpec('IndexedDB', require('indexed/lib/indexeddb'), function() {
-  var indexedDB = window.indexedDB
-    || window.mozIndexedDB
-    || window.webkitIndexedDB;
-
-  indexedDB.deleteDatabase('indexed');
-});
+backendSpec('IndexedDB', require('indexed/lib/indexeddb'));
 
 backendSpec('localStorage', require('indexed/lib/localstorage'), function() {
   localStorage.clear();
