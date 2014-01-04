@@ -17,7 +17,8 @@
     "paulmillr/async-each": "*",
     "juliangruber/stream": "*",
     "yields/unserialize": "*",
-    "ask11/idb": "0.0.2"
+    "ask11/idb": "0.0.2",
+    "then/promise": "*"
   },
   "development": {
     "chaijs/chai": "*",
@@ -26,9 +27,11 @@
   "scripts": [
     "index.js",
     "lib/index.js",
+    "lib/keys.js",
     "lib/indexeddb.js",
     "lib/localstorage.js",
-    "lib/keys.js"
+    "lib/promises.js"
   ],
-  "main": "index.js"
+  "main": "index.js",
+  "remotes": []
 }

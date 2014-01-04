@@ -6,7 +6,7 @@ var Indexed = require('./lib/index');
 
 Indexed.use(require('./lib/localstorage'));
 Indexed.use(require('./lib/indexeddb'));
-// Indexed.use(require('./lib/promises'));
+Indexed.use(require('./lib/promises'));
 
 /**
  * Expose `Indexed`.
