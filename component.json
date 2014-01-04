@@ -16,8 +16,7 @@
     "yields/idb-request": "*",
     "paulmillr/async-each": "*",
     "juliangruber/stream": "*",
-    "yields/unserialize": "*",
-    "ask11/idb": "*"
+    "yields/unserialize": "*"
   },
   "development": {
     "chaijs/chai": "*",
