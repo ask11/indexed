@@ -1,4 +1,4 @@
-function backendSpec(name, backend) {
+function backendSpec(name, backend, beforeHook) {
   var indexed = require('indexed');
   var expect = require('chai').expect;
   var async = require('async');
@@ -9,6 +9,7 @@ function backendSpec(name, backend) {
     before(function() {
       expect(backend.supported).exist;
       indexed.use(backend);
+      beforeHook();
     });
 
     describe('get', function() {
@@ -374,5 +375,14 @@ function backendSpec(name, backend) {
   });
 }
 
-backendSpec('localStorage', require('indexed/lib/localstorage'));
-backendSpec('IndexedDB', require('indexed/lib/indexeddb'));
+backendSpec('IndexedDB', require('indexed/lib/indexeddb'), function() {
+  var indexedDB = window.indexedDB
+    || window.mozIndexedDB
+    || window.webkitIndexedDB;
+
+  indexedDB.deleteDatabase('indexed');
+});
+
+backendSpec('localStorage', require('indexed/lib/localstorage'), function() {
+  localStorage.clear();
+});
