@@ -17,7 +17,7 @@
     "paulmillr/async-each": "*",
     "juliangruber/stream": "*",
     "yields/unserialize": "*",
-    "ask11/idb": "*"
+    "ask11/idb": "0.0.2"
   },
   "development": {
     "chaijs/chai": "*",

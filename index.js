@@ -1,13 +1,12 @@
 var Indexed = require('./lib/index');
-var IDBBackend = require('./lib/indexeddb');
-var LSBackend = require('./lib/localstorage');
 
 /**
- * When possible use IndexedDB as default backend,
- * and fallback to localStorage.
+ * Use build in plugins.
  */
 
-IDBBackend.supported ? Indexed.use(IDBBackend) : Indexed.use(LSBackend);
+Indexed.use(require('./lib/localstorage'));
+Indexed.use(require('./lib/indexeddb'));
+// Indexed.use(require('./lib/promises'));
 
 /**
  * Expose `Indexed`.
