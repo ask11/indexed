@@ -24,9 +24,11 @@
     "caolan/async": "*"
   },
   "scripts": [
+    "index.js",
     "lib/index.js",
     "lib/indexeddb.js",
-    "lib/localstorage.js"
+    "lib/localstorage.js",
+    "lib/keys.js"
   ],
-  "main": "lib/index.js"
+  "main": "index.js"
 }
