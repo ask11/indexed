@@ -1,39 +1,27 @@
 {
   "name": "indexed",
-  "version": "0.6.0",
-  "description": "Modular storage on top of IndexedDB with fallback to localStorage",
+  "version": "0.7.0",
+  "description": "High-level IndexedDB interface",
   "main": "dist/indexed.js",
   "repository": "git@github.com:ask11/indexed.git",
   "author": "Aleksey Kulikov <alekseys.kulikov@gmail.com> (http://twitter.com/ask_11)",
   "license": "MIT",
   "keywords": [
-    "indexed",
     "IndexedDB",
-    "LevelDB",
-    "localStorage",
+    "indexed",
+    "offline",
     "component",
     "browserify"
   ],
   "scripts": {
-    "test": "component-test",
-    "start": "component-test --server",
+    "test": "component-testem",
+    "start": "component install -d && component-testem --server",
     "build": "component build --dev",
     "release": "component build -s Indexed -o dist/ -n indexed",
     "stat": "cloc lib/ --quiet --by-file && cloc test/*.js --quiet --by-file"
   },
   "devDependencies": {
     "component": "*",
-    "component-test": "*"
-  },
-  "testling": {
-    "preprocess": "npm run build",
-    "html": "test/test-runner.html",
-    "browsers": [
-      "ie/9..latest",
-      "firefox/25..nightly",
-      "chrome/30..canary",
-      "opera/10..latest",
-      "safari/4..latest"
-    ]
+    "component-testem": "*"
   }
 }

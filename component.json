@@ -1,37 +1,28 @@
 {
   "name": "indexed",
   "repo": "ask11/indexed",
-  "version": "0.6.0",
-  "description": "Modular storage on top of IndexedDB with fallback to localStorage",
+  "version": "0.7.0",
+  "description": "High-level IndexedDB interface",
   "license": "MIT",
   "keywords": [
-    "indexed",
     "IndexedDB",
-    "localStorage",
-    "LevelDB"
+    "indexed",
+    "offline",
+    "WebSQL"
   ],
   "dependencies": {
-    "component/type": "*",
-    "timoxley/next-tick": "*",
-    "yields/idb-request": "*",
-    "paulmillr/async-each": "*",
-    "juliangruber/stream": "*",
-    "yields/unserialize": "*",
-    "ask11/idb": "0.0.2",
-    "then/promise": "*"
+    "then/promise": "*",
+    "component/emitter": "*"
   },
   "development": {
-    "chaijs/chai": "*",
-    "caolan/async": "*"
+    "component/assert": "*"
   },
   "scripts": [
-    "index.js",
     "lib/index.js",
-    "lib/keys.js",
+    "lib/db.js",
+    "lib/schema.js",
     "lib/indexeddb.js",
-    "lib/localstorage.js",
-    "lib/promises.js"
+    "lib/plugin.js"
   ],
-  "main": "index.js",
-  "remotes": []
+  "main": "lib/index.js"
 }
