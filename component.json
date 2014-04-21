@@ -18,7 +18,6 @@
   "scripts": [
     "index.js",
     "lib/db.js",
-    "lib/schema.js",
     "lib/indexeddb.js",
     "lib/utils.js"
   ],
