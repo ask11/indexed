@@ -160,6 +160,9 @@ $ component testem
 
 # standalone release
 $ component build scripts --standalone indexed --out . --name indexed
+
+# project stat
+cloc lib/ index.js --by-file && cloc test/ --by-file
 ```
 
 ## License

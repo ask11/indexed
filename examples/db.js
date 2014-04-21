@@ -1,11 +1,9 @@
 var indexed = require('indexed');
-var schema = require('./schema');
 
 // We can open db with defined schema
 // and all necessary migrations will be run.
 var db = indexed
-  .open('library', schema) // pass db name, and schema
-  .then(function() {
+  .open('library', 3, function() {
     console.log('db is ready');
   });
 
@@ -30,8 +28,9 @@ db.on('success', function(db) {
   console.log('successfully connected to ', db); // with db
 });
 
-// Pass standart IndexedDB event
-// you can use it, for custom behaviour.
+// pass custom callback to create schema
+// http://www.w3.org/TR/IndexedDB/#introduction
+// or use indexed-schema with convinient DSL
 db.on('upgradeneeded', function(e) {
   e.oldVersion; // prev version
   e.newVersion; // new version
@@ -42,5 +41,4 @@ db.on('upgradeneeded', function(e) {
 db.close();
 
 // or delete database completely
-indexed.destroy('library')
-  .then(function() {});
+db.destroy('library', function() {});
