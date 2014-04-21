@@ -1,4 +1,5 @@
 var DB = require('./lib/db');
+var type = require('type');
 
 /**
  * Expose `indexed()`.
@@ -16,6 +17,11 @@ module.exports = exports = indexed;
  */
 
 function indexed(name, version, cb) {
+  if (type(version) == 'function') {
+    cb = version;
+    version = 1;
+  }
+
   return new DB(name, version, cb);
 }
 
@@ -24,7 +30,6 @@ function indexed(name, version, cb) {
  */
 
 exports.open = indexed;
-exports.destroy = DB.destroy;
 
 /**
  * Expose core classes.
