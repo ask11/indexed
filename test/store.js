@@ -33,15 +33,25 @@ describe('indexed/store', function() {
   });
 
   it('db.stores', function() {
-    console.log(db);
     expect(Object.keys(db.stores)).length(2);
   });
 
   it('has properties', function() {
     var books = db.store('books');
+
     expect(books.name).equal('books');
     expect(books.db).equal(db);
     expect(books.key).equal('isbn');
     expect(books.increment).false;
+  });
+
+  it('get value by id', function(done) {
+    var books = db.store('books');
+    books.get(234567, function(err, book) {
+      if (err) return done(err);
+      expect(book).exist;
+      expect(book).eql({ title: 'Water Buffaloes', author: 'Fred', isbn: 234567 });
+      done();
+    });
   });
 });
