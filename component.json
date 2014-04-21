@@ -11,15 +11,15 @@
     "WebSQL"
   ],
   "dependencies": {
-    "then/promise": "4.0.0",
-    "component/emitter": "1.1.2"
+    "component/emitter": "1.1.2",
+    "component/type": "1.0.0"
   },
   "scripts": [
     "index.js",
     "lib/db.js",
     "lib/schema.js",
     "lib/indexeddb.js",
-    "lib/plugin.js"
+    "lib/utils.js"
   ],
   "development": {
     "dependencies": {
