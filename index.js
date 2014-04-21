@@ -1,4 +1,5 @@
 var DB = require('./lib/db');
+var Store = require('./lib/store');
 var type = require('type');
 
 /**
@@ -36,6 +37,6 @@ exports.open = indexed;
  */
 
 exports.DB = DB; // db interface
+exports.Store = Store; // stores
 exports.Transaction; // transactions
-exports.Store; // stores
 exports.Index; // subclass of Store to manage indexes

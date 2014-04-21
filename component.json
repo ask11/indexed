@@ -13,11 +13,13 @@
   "dependencies": {
     "component/emitter": "1.1.2",
     "component/type": "1.0.0",
-    "yields/idb-request": "0.0.1"
+    "yields/idb-request": "0.0.1",
+    "component/each": "~0.2.3"
   },
   "scripts": [
     "index.js",
     "lib/db.js",
+    "lib/store.js",
     "lib/indexeddb.js",
     "lib/utils.js"
   ],
@@ -26,7 +28,8 @@
       "chaijs/chai": "*"
     },
     "scripts": [
-      "test/db.js"
+      "test/db.js",
+      "test/store.js"
     ]
   }
 }
