@@ -1,12 +1,29 @@
 var DB = require('./lib/db');
-var Schema = require('./lib/schema');
 
 /**
- * API to create and manage databases.
+ * Expose `indexed()`.
  */
 
-exports.open = DB; // new DB(name, schema)
-exports.schema = Schema; // new Schema()
+module.exports = exports = indexed;
+
+/**
+ * Create new `DB` with `name`.
+ *
+ * @param {String} name
+ * @param {Number} [version]
+ * @param {Function} [cb]
+ * @return {DB}
+ */
+
+function indexed(name, version, cb) {
+  return new DB(name, version, cb);
+}
+
+/**
+ * Aliases.
+ */
+
+exports.open = indexed;
 exports.destroy = DB.destroy;
 
 /**
@@ -14,7 +31,6 @@ exports.destroy = DB.destroy;
  */
 
 exports.DB = DB; // db interface
-exports.Schema = Schema; // schema DSL
 exports.Transaction; // transactions
 exports.Store; // stores
 exports.Index; // subclass of Store to manage indexes
