@@ -31,7 +31,7 @@ db.on('success', function(db) {
 });
 
 // Pass standart IndexedDB event
-// you can use it, if you don't like schema DSL.
+// you can use it, for custom behaviour.
 db.on('upgradeneeded', function(e) {
   e.oldVersion; // prev version
   e.newVersion; // new version

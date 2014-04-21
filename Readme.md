@@ -150,9 +150,17 @@ tags.del(3, function(err) {
 
 ## Development
 
-  - `npm install && component install --dev` to install dependencies;
-  - `npm test` to ensure that all tests pass;
-  - `npm start` to run test server and watcher.
+```
+# install component(1) tools
+$ npm install -g component@1.0.0-rc5 component-testem
+
+# install deps and check tests
+$ component install --dev
+$ component testem
+
+# standalone release
+$ component build scripts --standalone indexed --out . --name indexed
+```
 
 ## License
 
