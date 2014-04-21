@@ -1,5 +1,5 @@
-var DB = require('./db');
-var Schema = require('./schema');
+var DB = require('./lib/db');
+var Schema = require('./lib/schema');
 
 /**
  * API to create and manage databases.

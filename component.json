@@ -2,7 +2,7 @@
   "name": "indexed",
   "repo": "ask11/indexed",
   "version": "0.7.0",
-  "description": "High-level IndexedDB interface",
+  "description": "High-level interface to IndexedDB",
   "license": "MIT",
   "keywords": [
     "IndexedDB",
@@ -14,15 +14,19 @@
     "then/promise": "*",
     "component/emitter": "*"
   },
-  "development": {
-    "component/assert": "*"
-  },
   "scripts": [
-    "lib/index.js",
+    "index.js",
     "lib/db.js",
     "lib/schema.js",
     "lib/indexeddb.js",
     "lib/plugin.js"
   ],
-  "main": "lib/index.js"
+  "development": {
+    "dependencies": {
+      "chaijs/chai": "*"
+    },
+    "scripts": [
+      "test/db.js"
+    ]
+  }
 }
