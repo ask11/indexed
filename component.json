@@ -1,6 +1,6 @@
 {
   "name": "indexed",
-  "repo": "ask11/indexed",
+  "repository": "ask11/indexed",
   "version": "0.7.0",
   "description": "High-level interface to IndexedDB",
   "license": "MIT",
@@ -11,8 +11,8 @@
     "WebSQL"
   ],
   "dependencies": {
-    "then/promise": "*",
-    "component/emitter": "*"
+    "then/promise": "4.0.0",
+    "component/emitter": "1.1.2"
   },
   "scripts": [
     "index.js",
