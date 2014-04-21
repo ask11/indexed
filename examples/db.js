@@ -37,9 +37,6 @@ db.on('upgradeneeded', function(e) {
   e.newVersion; // new version
 });
 
-// Expose db connection for another modules
-module.exports = db;
-
 // after you finished to use db
 // you can close connection
 db.close();
