@@ -28,6 +28,7 @@
       "chaijs/chai": "*"
     },
     "scripts": [
+      "test/setup.js",
       "test/db.js",
       "test/store.js",
       "test/vendor/indexeddb-shim.js"

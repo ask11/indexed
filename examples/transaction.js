@@ -23,9 +23,8 @@ tr.on('complete', function() {
 
 // properties
 tr.origin; // origin
-tr.request; // link to original
 tr.db; // link to db
 tr.mode; // getter to tr.origin.mode
-tr.scope; // array of using stores
+tr.store; // accesible store
 tr.active; // true|false
 tr.error; // if any error happen

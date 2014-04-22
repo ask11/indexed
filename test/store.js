@@ -2,10 +2,6 @@ var expect = require('chai').expect;
 var indexed = require('../index');
 
 describe('indexed/store', function() {
-  if (!window.indexedDB) {
-    require('./vendor/indexeddb-shim');
-    window.shimIndexedDB.__debug(true);
-  }
   var name, db;
 
   beforeEach(function(done) {

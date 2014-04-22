@@ -2,19 +2,10 @@ var expect = require('chai').expect;
 var indexed = require('../index');
 
 describe('indexed/db', function() {
-  if (!window.indexedDB) {
-    require('./vendor/indexeddb-shim');
-    // window.shimIndexedDB.__debug(true);
-  }
-  // generate new name each time
   var name;
-  beforeEach(function() {
-    name = 'library' + Date.now();
-  });
 
-  afterEach(function(done) {
-    indexed.destroy(name, done);
-  });
+  beforeEach(function() { name = 'library' + Date.now() });
+  afterEach(function(done) { indexed.destroy(name, done) });
 
   it('open without version', function(done) {
     indexed.open(name, function(err, db) {
@@ -24,7 +15,7 @@ describe('indexed/db', function() {
     });
   });
 
-  it('db object has properties', function(done) {
+  it('has properties', function(done) {
     var db = indexed(name, 2);
 
     db.on('upgradeneeded', function(e) {
