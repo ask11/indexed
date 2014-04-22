@@ -21,7 +21,6 @@
     "lib/db.js",
     "lib/store.js",
     "lib/transaction.js",
-    "lib/indexeddb.js",
     "lib/utils.js"
   ],
   "development": {
