@@ -165,7 +165,7 @@ $ component build scripts --standalone indexed --out . --name indexed
 cloc lib/ index.js --by-file && cloc test/ --by-file
 
 # fix phantomjs
-rm ~/Library/Application\ Support/Ofi\ Labs/PhantomJS/*.localstorage
+rm -rf ~/Library/Application\ Support/Ofi\ Labs/PhantomJS/http_localhost_7357/
 rm ~/Library/Application\ Support/Ofi\ Labs/PhantomJS/Databases.db
 ```
 
