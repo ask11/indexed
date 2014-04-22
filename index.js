@@ -1,5 +1,6 @@
 var DB = require('./lib/db');
 var Store = require('./lib/store');
+var Schema = require('./lib/schema');
 var Transaction = require('./lib/transaction');
 
 /**
@@ -13,7 +14,14 @@ module.exports = exports = DB;
  */
 
 exports.open = DB;
+exports.schema = Schema;
+
+/**
+ * Expose core classes.
+ */
+
 exports.DB = DB;
+exports.Schema = Schema;
 exports.Store = Store;
 exports.Transaction = Transaction;
 exports.Index;

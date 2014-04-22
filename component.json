@@ -14,11 +14,14 @@
     "component/emitter": "1.1.2",
     "component/type": "1.0.0",
     "component/each": "0.2.3",
-    "yields/idb-request": "0.0.1"
+    "yields/idb-request": "0.0.1",
+    "component/max": "^1.0.0",
+    "segmentio/extend": "^1.0.0"
   },
   "scripts": [
     "index.js",
     "lib/db.js",
+    "lib/schema.js",
     "lib/store.js",
     "lib/transaction.js",
     "lib/utils.js"
@@ -28,7 +31,6 @@
       "chaijs/chai": "*"
     },
     "scripts": [
-      "test/setup.js",
       "test/db.js",
       "test/store.js",
       "test/vendor/indexeddb-shim.js"

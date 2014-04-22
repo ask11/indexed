@@ -3,23 +3,18 @@ var indexed = require('../index');
 
 describe('indexed/store', function() {
   var name, db;
+  var schema = window.sc = indexed.schema()
+    .version(1)
+      .addStore('books', { key: 'isbn' })
+      .put({ title: 'Quarry Memories', author: 'Fred', isbn: 123456 })
+      .put({ title: 'Water Buffaloes', author: 'Fred', isbn: 234567 })
+      .put({ title: 'Bedrock Nights', author: 'Barney', isbn: 345678 })
+    .version(2)
+      .addStore('magazines');
 
   beforeEach(function(done) {
     name = 'library' + Date.now();
-    db = indexed(name, 2, done);
-
-    db.on('upgradeneeded', function(e) {
-      if (e.oldVersion < 1) {
-        var store = db.origin.createObjectStore('books', { keyPath: 'isbn' });
-
-        // Populate with initial data.
-        store.put({ title: 'Quarry Memories', author: 'Fred', isbn: 123456 });
-        store.put({ title: 'Water Buffaloes', author: 'Fred', isbn: 234567 });
-        store.put({ title: 'Bedrock Nights', author: 'Barney', isbn: 345678 });
-      }
-
-      if (e.oldVersion < 2) db.origin.createObjectStore('magazines');
-    });
+    db = indexed(name, schema, done);
   });
 
   afterEach(function(done) {
@@ -32,8 +27,8 @@ describe('indexed/store', function() {
 
     expect(books.name).equal('books');
     expect(books.db).equal(db);
-    // expect(books.key).equal('isbn'); // FIXME
-    // expect(books.increment).false; // FIXME
+    expect(books.key).equal('isbn');
+    expect(books.increment).false;
   });
 
   it('#get', function(done) {
