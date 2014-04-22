@@ -2,6 +2,8 @@ var expect = require('chai').expect;
 var indexed = require('../index');
 
 describe('indexed/db', function() {
+  if (!window.indexedDB) require('./vendor/indexeddb-shim');
+
   it('open without version', function(done) {
     indexed.open('fake-library', function(err, db) {
       if (err) return done(err);
