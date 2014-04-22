@@ -1,27 +1,39 @@
 {
   "name": "indexed",
-  "repo": "ask11/indexed",
-  "description": "High-level wrapper around IndexedDB with fallback to localStorage",
-  "version": "0.5.1",
+  "repository": "ask11/indexed",
+  "version": "0.7.0",
+  "description": "High-level interface to IndexedDB",
+  "license": "MIT",
   "keywords": [
     "IndexedDB",
-    "store",
-    "data",
-    "localStorage",
-    "LevelDB"
+    "indexed",
+    "offline",
+    "WebSQL"
   ],
   "dependencies": {
-    "timoxley/next-tick": "*",
-    "marcuswestin/store.js": "*",
-    "component/clone": "*",
-    "component/type": "*",
-    "component/each": "*"
+    "component/emitter": "1.1.2",
+    "component/type": "1.0.0",
+    "component/each": "0.2.3",
+    "yields/idb-request": "0.0.1",
+    "component/max": "^1.0.0",
+    "segmentio/extend": "^1.0.0"
   },
-  "license": "MIT",
-  "main": "index.js",
   "scripts": [
     "index.js",
-    "lib/indexeddb.js",
-    "lib/localstorage.js"
-  ]
+    "lib/db.js",
+    "lib/schema.js",
+    "lib/store.js",
+    "lib/transaction.js",
+    "lib/utils.js"
+  ],
+  "development": {
+    "dependencies": {
+      "chaijs/chai": "*"
+    },
+    "scripts": [
+      "test/db.js",
+      "test/store.js",
+      "test/vendor/indexeddb-shim.js"
+    ]
+  }
 }

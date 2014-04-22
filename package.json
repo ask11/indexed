@@ -1,49 +1,27 @@
 {
   "name": "indexed",
-  "version": "0.5.1",
-  "description": "High-level wrapper around IndexedDB with fallback to localStorage",
+  "version": "0.7.0",
+  "description": "High-level IndexedDB interface",
   "main": "dist/indexed.js",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:ask11/indexed.git"
-  },
-  "keywords": [
-    "IndexedDB",
-    "LevelDB",
-    "browserify"
-  ],
+  "repository": "git@github.com:ask11/indexed.git",
   "author": "Aleksey Kulikov <alekseys.kulikov@gmail.com> (http://twitter.com/ask_11)",
   "license": "MIT",
+  "keywords": [
+    "IndexedDB",
+    "indexed",
+    "offline",
+    "component",
+    "browserify"
+  ],
   "scripts": {
-    "postinstall": "component install",
-    "test": "testem -f test/testem.json ci",
-    "start": "testem -f test/testem.json",
-    "build": "component build",
-    "release": "component build --standalone Indexed && sed -i.bak 's/require/requireIndexed/g' build/build.js && cp ./build/build.js ./dist/indexed.js",
-    "stat": "cloc index.js lib/ --quiet && cloc test/*.js --quiet"
-  },
-  "dependencies": {
-    "component": "*"
+    "test": "component-testem",
+    "start": "component install -d && component-testem --server",
+    "build": "component build --dev",
+    "release": "component build -s Indexed -o dist/ -n indexed",
+    "stat": "cloc lib/ --quiet --by-file && cloc test/*.js --quiet --by-file"
   },
   "devDependencies": {
-    "testem": "*",
-    "chai": "*",
-    "async": "*"
-  },
-  "testling": {
-    "preprocess": "npm run build",
-    "html": "test/test-runner.html",
-    "browsers": [
-      "ie/6..latest",
-      "firefox/3..5",
-      "firefox/19..nightly",
-      "chrome/4..7",
-      "chrome/25..canary",
-      "opera/10..next",
-      "safari/4..latest",
-      "iphone/6",
-      "ipad/6",
-      "android/4.2"
-    ]
+    "component": "*",
+    "component-testem": "*"
   }
 }
