@@ -13,7 +13,8 @@
   "dependencies": {
     "component/emitter": "1.1.2",
     "component/type": "1.0.0",
-    "component/each": "~0.2.3"
+    "component/each": "0.2.3",
+    "yields/idb-request": "0.0.1"
   },
   "scripts": [
     "index.js",
