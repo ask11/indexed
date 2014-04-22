@@ -45,13 +45,35 @@ describe('indexed/store', function() {
     expect(books.increment).false;
   });
 
-  it('get value by id', function(done) {
+  it('#get', function(done) {
     var books = db.store('books');
     books.get(234567, function(err, book) {
-      if (err) return done(err);
       expect(book).exist;
       expect(book).eql({ title: 'Water Buffaloes', author: 'Fred', isbn: 234567 });
-      done();
+      done(err);
+    });
+  });
+
+  it('#put', function(done) {
+    var books = db.store('books');
+    var data = { title: 'Sleeping yaks', author: 'John', isbn: 456789 };
+
+    books.put(data, function(err) {
+      books.get(456789, function(err2, book) {
+        expect(book).exist;
+        expect(book).eql(data);
+        done(err || err2);
+      });
+    });
+  });
+
+  it('#del', function(done) {
+    var books = db.store('books');
+    books.del(123456, function(err) {
+      books.get(123456, function(err2, book) {
+        expect(book).not.exist;
+        done(err || err2);
+      });
     });
   });
 });
