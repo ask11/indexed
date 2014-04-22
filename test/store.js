@@ -47,6 +47,7 @@ describe('indexed/store', function() {
 
   it('#get', function(done) {
     var books = db.store('books');
+
     books.get(234567, function(err, book) {
       expect(book).exist;
       expect(book).eql({ title: 'Water Buffaloes', author: 'Fred', isbn: 234567 });
@@ -69,9 +70,34 @@ describe('indexed/store', function() {
 
   it('#del', function(done) {
     var books = db.store('books');
+
     books.del(123456, function(err) {
       books.get(123456, function(err2, book) {
         expect(book).not.exist;
+        done(err || err2);
+      });
+    });
+  });
+
+  it('#count', function(done) {
+    var books = db.store('books');
+    var magazines = db.store('magazines');
+
+    books.count(function(err, count) {
+      expect(count).equal(3);
+      magazines.count(function(err2, count) {
+        expect(count).equal(0);
+        done(err || err2);
+      });
+    });
+  });
+
+  it('#clear', function(done) {
+    var books = db.store('books');
+
+    books.clear(function(err) {
+      books.count(function(err2, count) {
+        expect(count).equal(0);
         done(err || err2);
       });
     });
