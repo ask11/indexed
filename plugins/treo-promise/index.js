@@ -11,23 +11,23 @@ module.exports = plugin;
  */
 
 var dbMethods = [
-  ['drop', 1],
-  ['close', 1]
+  'drop',
+  'close'
 ];
 
 var storeMethods = [
-  ['put', 3],
-  ['get', 2],
-  ['del', 2],
-  ['count', 1],
-  ['clear', 1],
-  ['batch', 2],
-  ['all', 1],
+  'put',
+  'get', 
+  'del',
+  'count',
+  'clear',
+  'batch',
+  'all'
 ];
 
 var indexMethods = [
-  ['get', 2],
-  ['count', 2],
+  'get',
+  'count'
 ];
 
 /**
@@ -60,6 +60,6 @@ function plugin() {
 
 function patch(object, methods) {
   methods.forEach(function(m) {
-    object[m[0]] = denodeify(object[m[0]], m[1]);
+    object[m[0]] = denodeify(object[m]);
   });
 }
