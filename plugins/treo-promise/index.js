@@ -44,9 +44,7 @@ function plugin() {
       patch(store, storeMethods);
 
       Object.keys(store.indexes).forEach(function(indexName) {
-        
         var index = store.index(indexName);
-        console.log('patch index', index)
         patch(index, indexMethods);
       });
     });
