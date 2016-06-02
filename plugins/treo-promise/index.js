@@ -44,7 +44,9 @@ function plugin() {
       patch(store, storeMethods);
 
       Object.keys(store.indexes).forEach(function(indexName) {
+        
         var index = store.index(indexName);
+        console.log('patch index', index)
         patch(index, indexMethods);
       });
     });
@@ -60,6 +62,6 @@ function plugin() {
 
 function patch(object, methods) {
   methods.forEach(function(m) {
-    object[m[0]] = denodeify(object[m]);
+    object[m] = denodeify(object[m]);
   });
 }
